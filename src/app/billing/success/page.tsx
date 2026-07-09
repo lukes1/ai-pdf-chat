@@ -60,9 +60,16 @@ export default async function BillingSuccessPage({
     );
   }
 
-  await supabase
-    .from("profiles")
-    .upsert({ id: user.id, plan: "pro", updated_at: new Date().toISOString() });
+  const customerId = typeof session.customer === "string" ? session.customer : session.customer?.id;
+  const subscriptionId = typeof subscription === "string" ? subscription : subscription?.id;
+
+  await supabase.from("profiles").upsert({
+    id: user.id,
+    plan: "pro",
+    stripe_customer_id: customerId,
+    stripe_subscription_id: subscriptionId,
+    updated_at: new Date().toISOString(),
+  });
 
   return (
     <main className="min-h-screen bg-[#08090d] px-6 py-16 text-white">

@@ -4,6 +4,8 @@
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   plan text not null default 'free' check (plan in ('free', 'pro')),
+  stripe_customer_id text,
+  stripe_subscription_id text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -33,6 +35,9 @@ create table if not exists public.usage (
   updated_at timestamptz not null default now(),
   primary key (user_id, usage_date)
 );
+
+alter table public.profiles add column if not exists stripe_customer_id text;
+alter table public.profiles add column if not exists stripe_subscription_id text;
 
 alter table public.profiles enable row level security;
 alter table public.documents enable row level security;
