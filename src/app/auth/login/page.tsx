@@ -2,12 +2,13 @@ import Link from "next/link";
 import { signIn, signUp } from "./actions";
 
 type LoginPageProps = {
-  searchParams?: Promise<{ message?: string }>;
+  searchParams?: Promise<{ message?: string; type?: "success" | "error" }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const message = params?.message;
+  const messageType = params?.type ?? "error";
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-6 py-12 text-white">
@@ -49,9 +50,20 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </label>
 
           {message ? (
-            <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
-              {message}
-            </p>
+            <div
+              className={
+                messageType === "success"
+                  ? "rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-100"
+                  : "rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-100"
+              }
+            >
+              <p>{message}</p>
+              {messageType === "success" ? (
+                <p className="mt-2 text-xs text-emerald-200/80">
+                  Danach kannst du dich hier mit deiner E-Mail und deinem Passwort einloggen.
+                </p>
+              ) : null}
+            </div>
           ) : null}
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

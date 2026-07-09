@@ -41,12 +41,21 @@ export async function signUp(formData: FormData) {
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp(credentials);
+  const { data, error } = await supabase.auth.signUp(credentials);
 
   if (error) {
-    redirect(`/auth/login?message=${encodeURIComponent(error.message)}`);
+    redirect(`/auth/login?message=${encodeURIComponent(error.message)}&type=error`);
   }
 
   revalidatePath("/", "layout");
+
+  if (!data.session) {
+    redirect(
+      `/auth/login?message=${encodeURIComponent(
+        "Registrierung erfolgreich. Bitte prüfe deine E-Mail und bestätige deinen Account. Schau auch im Spam-Ordner nach."
+      )}&type=success`
+    );
+  }
+
   redirect("/dashboard");
 }
