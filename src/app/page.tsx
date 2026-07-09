@@ -22,7 +22,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#08090d] text-white">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <Link href="/" className="text-lg font-semibold tracking-tight">
-          DocuMind
+          Askfolio
         </Link>
         <div className="flex items-center gap-3 text-sm">
           <Link href="/auth/login" className="text-zinc-300 transition hover:text-white">
@@ -62,7 +62,7 @@ export default function Home() {
               Dashboard öffnen
             </Link>
           </div>
-          <p className="mt-4 text-sm text-zinc-500">Free-Plan: 5 PDFs und 30 Fragen pro Tag.</p>
+          <p className="mt-4 text-sm text-zinc-500">Free-Plan: 5 PDFs und 30 Fragen pro Tag. Pro: 9 €/Monat.</p>
         </div>
 
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-black/40">
@@ -108,7 +108,7 @@ export default function Home() {
             <p className="text-sm font-medium uppercase tracking-[0.3em] text-zinc-500">Anwendungsfälle</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-tight">Für alle, die schnell aus Dokumenten lernen müssen.</h2>
             <p className="mt-5 leading-8 text-zinc-400">
-              DocuMind ist bewusst einfach: Dokument hochladen, Frage stellen, Antwort bekommen. Keine komplizierte Einrichtung.
+              Askfolio ist bewusst einfach: Dokument hochladen, Frage stellen, Antwort bekommen. Keine komplizierte Einrichtung.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -127,19 +127,32 @@ export default function Home() {
             <div>
               <h2 className="text-4xl font-semibold tracking-tight">Starte kostenlos.</h2>
               <p className="mt-4 leading-8 text-zinc-400">
-                Lade bis zu 5 PDFs hoch und stelle bis zu 30 Fragen pro Tag. Pro ist technisch vorbereitet und kommt später.
+                Lade bis zu 5 PDFs hoch und stelle bis zu 30 Fragen pro Tag. Mit Pro hebst du die Limits auf.
               </p>
             </div>
-            <div className="rounded-3xl bg-white p-6 text-zinc-950">
-              <p className="text-sm font-medium text-zinc-500">Free</p>
-              <p className="mt-2 text-4xl font-semibold">0 €</p>
-              <p className="mt-3 text-zinc-600">Zum Testen und Validieren.</p>
-              <Link
-                href="/auth/login"
-                className="mt-6 block rounded-2xl bg-zinc-950 px-5 py-3 text-center font-semibold text-white transition hover:bg-zinc-800"
-              >
-                Kostenlos starten
-              </Link>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-3xl bg-white p-6 text-zinc-950">
+                <p className="text-sm font-medium text-zinc-500">Free</p>
+                <p className="mt-2 text-4xl font-semibold">0 €</p>
+                <p className="mt-3 text-zinc-600">5 PDFs und 30 Fragen pro Tag.</p>
+                <Link
+                  href="/auth/login"
+                  className="mt-6 block rounded-2xl bg-zinc-950 px-5 py-3 text-center font-semibold text-white transition hover:bg-zinc-800"
+                >
+                  Kostenlos starten
+                </Link>
+              </div>
+              <div className="rounded-3xl border border-emerald-300/30 bg-emerald-300/10 p-6 text-white">
+                <p className="text-sm font-medium text-emerald-200">Pro</p>
+                <p className="mt-2 text-4xl font-semibold">9 €</p>
+                <p className="mt-3 text-zinc-300">Monatlich. Keine Free-Limits.</p>
+                <Link
+                  href="/auth/login"
+                  className="mt-6 block rounded-2xl bg-white px-5 py-3 text-center font-semibold text-zinc-950 transition hover:bg-zinc-200"
+                >
+                  Pro testen
+                </Link>
+              </div>
             </div>
           </div>
         </div>

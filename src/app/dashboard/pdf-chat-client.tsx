@@ -11,6 +11,7 @@ import {
   UploadedPdf,
   UsageStatus,
 } from "./actions";
+import { createCheckoutSession } from "./billing-actions";
 
 async function extractPdfText(file: File): Promise<UploadedPdf> {
   if (file.type !== "application/pdf") {
@@ -197,8 +198,20 @@ export function PdfChatClient({ initialDocuments, initialUsage }: { initialDocum
           </div>
 
           <p className="mt-4 text-xs leading-5 text-zinc-400">
-            Free ist aktuell auf 5 PDFs und 30 Fragen pro Tag begrenzt. Pro wird später über Stripe freigeschaltet.
+            Free ist auf 5 PDFs und 30 Fragen pro Tag begrenzt. Pro hebt diese Limits auf.
           </p>
+
+          {usage?.plan !== "pro" ? (
+            <form action={createCheckoutSession} className="mt-5">
+              <button className="w-full rounded-xl bg-white px-4 py-3 font-semibold text-zinc-950 transition hover:bg-zinc-200">
+                Upgrade auf Askfolio Pro · 9 €/Monat
+              </button>
+            </form>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-emerald-300/20 bg-emerald-300/10 p-4 text-sm text-emerald-100">
+              Pro aktiv: Du hast keine Free-Limits mehr.
+            </div>
+          )}
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -291,7 +304,7 @@ export function PdfChatClient({ initialDocuments, initialUsage }: { initialDocum
                 }`}
               >
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wide opacity-60">
-                  {message.role === "user" ? "Du" : "AI PDF Chat"}
+                  {message.role === "user" ? "Du" : "Askfolio"}
                 </p>
                 <p className="whitespace-pre-wrap">{message.content}</p>
               </div>
