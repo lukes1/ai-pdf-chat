@@ -1,4 +1,4 @@
--- AI PDF Chat MVP tables + Free/Pro usage limits
+-- AI PDF Chat MVP tables + Free/Pro usage limits + Stripe subscription sync
 -- Run this in Supabase: SQL Editor -> New query -> paste -> Run
 
 create table if not exists public.profiles (
@@ -141,3 +141,9 @@ create index if not exists messages_document_id_created_at_idx
 
 create index if not exists usage_user_id_usage_date_idx
   on public.usage(user_id, usage_date desc);
+
+create index if not exists profiles_stripe_customer_id_idx
+  on public.profiles(stripe_customer_id);
+
+create index if not exists profiles_stripe_subscription_id_idx
+  on public.profiles(stripe_subscription_id);
