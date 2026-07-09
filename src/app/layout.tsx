@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI PDF Chat",
-  description: "A starter Next.js app for an AI PDF chat product.",
+  title: "DocuMind - KI-Chat für PDFs",
+  description: "Lade PDFs hoch, stelle Fragen und erhalte KI-Antworten aus deinen Dokumenten.",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="de" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
